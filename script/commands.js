@@ -151,6 +151,7 @@ function handleSpecialCommands(value) {
     const q = encodeURIComponent(rawValue);
     if (engine === 'ddg') navigate(`https://duckduckgo.com/?q=${q}`);
     else if (engine === 'bing') navigate(`https://www.bing.com/search?q=${q}`);
+    else if (engine === 'brave') navigate(`https://search.brave.com/search?q=${q}`);
     else navigate(`https://google.com/search?q=${q}`);
   }
 }
@@ -221,6 +222,7 @@ function routeSemanticIntent(query) {
   const q = encodeURIComponent(cleaned || raw);
   if (engine === 'ddg') navRoute(`https://duckduckgo.com/?q=${q}`, 'DuckDuckGo Search');
   else if (engine === 'bing') navRoute(`https://www.bing.com/search?q=${q}`, 'Bing Search');
+  else if (engine === 'brave') navRoute(`https://search.brave.com/search?q=${q}`, 'Brave Search');
   else navRoute(`https://google.com/search?q=${q}`, 'Google Search');
 }
 

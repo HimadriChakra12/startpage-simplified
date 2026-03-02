@@ -3,25 +3,17 @@
 // ========================================
 const DEFAULT_BOOKMARKS = [
   { href: "https://mail.google.com/", title: "Gmail" },
-  { href: "https://huggingface.co/spaces", title: "HuggingFace" },
   { href: "https://youtube.com", title: "YouTube" },
   { href: "https://drive.google.com/", title: "Drive" },
   { href: "https://discord.com/app", title: "Discord" },
-  { href: "https://deepsite.hf.co/", title: "Deepsite" },
   { href: "https://web.whatsapp.com/", title: "WhatsApp" },
   { href: "https://www.reddit.com/", title: "Reddit" },
-  { href: "https://x.com/home", title: "X" },
-  { href: "https://pinterest.com/", title: "Pinterest" },
-  { href: "https://chat.deepseek.com/", title: "DeepSeek" },
-  { href: "https://grok.com/", title: "Grock" },
   { href: "https://www.perplexity.ai/", title: "Perplexity" },
   { href: "https://chatgpt.com/", title: "ChatGPT" },
   { href: "https://alternativeto.net/", title: "AlternativeTo" },
   { href: "https://github.com/", title: "Github" },
   { href: "https://gemini.google.com/app", title: "Gemini" },
   { href: "https://www.instagram.com/", title: "Instagram" },
-  { href: "https://fmhy.net/", title: "FMHY" },
-  { href: "https://claude.ai/new", title: "Claude" }
 ];
 
 const DEFAULT_USERNAME = "coffeenerd";
@@ -32,7 +24,7 @@ const DEFAULT_GEMINI_MODEL = "gemini-2.5-flash-lite";
 const DEFAULT_GEMINI_SYSTEM_PROMPT = "";
 const DEFAULT_AI_MODE_ENABLED = false;
 const DEFAULT_AI_ROUTE_BADGE_MODE = "live";
-const DEFAULT_SEARCH_ENGINE = "google"; // "google" | "ddg" | "bing"
+const DEFAULT_SEARCH_ENGINE = "brave"; // "google" | "ddg" | "bing" | "brave"
 
 // ========================================
 // Syntax Colors — universal, theme-independent
@@ -200,6 +192,7 @@ function saveAiRouteBadgeMode(mode) {
 // Search Overrides — per-prefix URL overrides
 // ========================================
 const OVERRIDEABLE_PREFIXES = {
+  'brave':     { label: 'Brave',       default: 'https://search.brave.com/search?q=' },
   'yt':     { label: 'YouTube',       default: 'https://www.youtube.com/results?search_query=' },
   'r':      { label: 'Reddit',        default: 'https://google.com/search?q=site:reddit.com ' },
   'ddg':    { label: 'DuckDuckGo',    default: 'https://duckduckgo.com/?q=' },
@@ -238,9 +231,9 @@ function saveCustomTags(tags) {
 }
 function getStoredSearchEngine() {
   const stored = localStorage.getItem('searchEngine') || DEFAULT_SEARCH_ENGINE;
-  return ['google', 'ddg', 'bing'].includes(stored) ? stored : DEFAULT_SEARCH_ENGINE;
+  return ['google', 'brave', 'ddg', 'bing'].includes(stored) ? stored : DEFAULT_SEARCH_ENGINE;
 }
 function saveSearchEngine(engine) {
   const normalized = String(engine || '').toLowerCase();
-  localStorage.setItem('searchEngine', ['google', 'ddg', 'bing'].includes(normalized) ? normalized : DEFAULT_SEARCH_ENGINE);
+  localStorage.setItem('searchEngine', ['google', 'brave', 'ddg', 'bing'].includes(normalized) ? normalized : DEFAULT_SEARCH_ENGINE);
 }

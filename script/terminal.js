@@ -356,6 +356,7 @@ function resolveUrl(rawValue, elements) {
   if (/^r:/i.test(value))      return `https://google.com/search?q=site:reddit.com ${enc(strip('r:'))}`;
   if (/^ddg:/i.test(value))    return `https://duckduckgo.com/?q=${enc(strip('ddg:'))}`;
   if (/^bing:/i.test(value))   return `https://www.bing.com/search?q=${enc(strip('bing:'))}`;
+  if (/^brave:/i.test(value))   return `https://search.brave.com/search?q=${enc(strip('brave:'))}`;
   if (/^ggl:/i.test(value))    return `https://www.google.com/search?q=${enc(strip('ggl:'))}`;
   if (/^amazon:/i.test(value)) return `https://www.amazon.com/s?k=${enc(strip('amazon:'))}`;
   if (/^imdb:/i.test(value))   return `https://www.imdb.com/find?q=${enc(strip('imdb:'))}`;
@@ -381,6 +382,7 @@ function resolveUrl(rawValue, elements) {
   const q = enc(rawValue.trim());
   if (engine === 'ddg')  return `https://duckduckgo.com/?q=${q}`;
   if (engine === 'bing') return `https://www.bing.com/search?q=${q}`;
+  if (engine === 'brave') return `https://search.brave.com/search?q=${q}`;
   return `https://google.com/search?q=${q}`;
 }
 
@@ -415,6 +417,7 @@ function handleEnterKey(rawValue, value, elements, history) {
     const engine = typeof getStoredSearchEngine === 'function' ? getStoredSearchEngine() : 'google';
     if (engine === 'ddg') navigate(`https://duckduckgo.com/?q=${q}`);
     else if (engine === 'bing') navigate(`https://www.bing.com/search?q=${q}`);
+    else if (engine === 'brave') navigate(`https://search.brave.com/search?q=${q}`);
     else navigate(`https://google.com/search?q=${q}`);
     if (rawValue.trim()) history.push(rawValue.trim());
     return;
